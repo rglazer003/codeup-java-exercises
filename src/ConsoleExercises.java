@@ -13,9 +13,19 @@ public class ConsoleExercises {
 //        String word2 = scanner.next();
 //        String word3 = scanner.next();
 //        System.out.println(word1 + " "+ word2 + " " + word3);
-        System.out.println("Please type a sentence.");
-        String sent = scanner.nextLine();
-        System.out.println(sent);
+//        System.out.println("Please type a sentence.");
+//        String sent = scanner.nextLine();
+//        System.out.println(sent);
+        System.out.println("Please enter length of room.");
+        String first = scanner.nextLine();
+        System.out.println("Please enter width of room.");
+        String second = scanner.nextLine();
+        int length = Integer.parseInt(first);
+        int width = Integer.parseInt(second);
+        int perimeter = (length*2)+(width*2);
+        System.out.println("Perimeter of room is " + perimeter);
+        int area = length*width;
+        System.out.println("Area of room is " + area);
 
     }
 }
