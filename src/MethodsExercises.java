@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class MethodsExercises {
@@ -20,6 +21,15 @@ public class MethodsExercises {
         int fact = scanner.nextInt();
         long result = factorial(fact);
         System.out.println("Your factorial is "+result);
+        System.out.println("How many dice do you want to roll?");
+        int diceCount = scanner.nextInt();
+        System.out.println("How many sides does each dice have?");
+        int diceSides = scanner.nextInt();
+        long diceTotal = diceRoll(diceCount,diceSides);
+        System.out.println("The total of all rolls is "+ diceTotal);
+        int guesses = HighLow();
+        System.out.println("It took you "+guesses+ " guesses.");
+
 
     }
     public static long add (int first, int second){
@@ -43,7 +53,7 @@ public class MethodsExercises {
         int input = scanner.nextInt();
         if (input < min || input > max){
             System.out.println("Number not in range, please enter another number.");
-            getInteger(min,max);
+           return getInteger(min,max);
         }
         return input;
     }
@@ -60,5 +70,45 @@ public class MethodsExercises {
             hold *= count;
         }
         return hold;
+    }
+    public static long diceRoll (int number, int sides){
+        Random rand = new Random();
+        long total = 0;
+        for (int rolls = 1; rolls <= number; rolls++){
+            int roll = rand.nextInt(sides)+1;
+            System.out.println("You rolled a " +roll);
+            total += roll;
+        }
+        return total;
+    }
+    public static int HighLow() {
+        Random rand = new Random();
+        Scanner scanner = new Scanner(System.in);
+        scanner.useDelimiter("\n");
+        int number = rand.nextInt(100)+1;
+        boolean guessed = true;
+        System.out.println("I am thinking of a number between 1 and 100, try to guess it.");
+        int guess = scanner.nextInt();
+        int guesses = 0;
+        while (guessed){
+            if (guess<number){
+                System.out.println("Too low, try again.");
+                guesses++;
+                guess = scanner.nextInt();
+            }
+            else if (guess>number){
+                System.out.println("Too high, try again.");
+                guesses++;
+                guess =scanner.nextInt();
+            }
+            else {
+                System.out.println("You got it!");
+                System.out.println("The number was "+ number);
+                guesses++;
+                guessed = false;
+            }
+        }
+        return guesses;
+
     }
 }
