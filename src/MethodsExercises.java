@@ -5,6 +5,7 @@ public class MethodsExercises {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("\n");
+        boolean roll =true;
         System.out.println(add(1,2));
         System.out.println(subtract(3,2));
         System.out.println(multiply(2,3));
@@ -25,8 +26,20 @@ public class MethodsExercises {
         int diceCount = scanner.nextInt();
         System.out.println("How many sides does each dice have?");
         int diceSides = scanner.nextInt();
+        scanner.nextLine();
         long diceTotal = diceRoll(diceCount,diceSides);
         System.out.println("The total of all rolls is "+ diceTotal);
+        while (roll){
+            System.out.println("Do you want to roll again?");
+            String confirm = scanner.nextLine();
+            if (confirm.equalsIgnoreCase("yes")|| confirm.equalsIgnoreCase("y")){
+                diceTotal = diceRoll(diceCount,diceSides);
+                System.out.println("The total of all rolls is "+ diceTotal);
+            }
+            else {
+                roll = false;
+            }
+        }
         int guesses = HighLow();
         System.out.println("It took you "+guesses+ " guesses.");
 
@@ -67,6 +80,7 @@ public class MethodsExercises {
             factorial(num);
         }
         for (int count = 1; count <= number; count++ ){
+            System.out.println(hold + "*" + count + "=" + (hold * count));
             hold *= count;
         }
         return hold;
@@ -86,11 +100,11 @@ public class MethodsExercises {
         Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("\n");
         int number = rand.nextInt(100)+1;
-        boolean guessed = true;
+        boolean guessing = true;
         System.out.println("I am thinking of a number between 1 and 100, try to guess it.");
         int guess = scanner.nextInt();
         int guesses = 0;
-        while (guessed){
+        while (guessing){
             if (guess<number){
                 System.out.println("Too low, try again.");
                 guesses++;
@@ -105,7 +119,7 @@ public class MethodsExercises {
                 System.out.println("You got it!");
                 System.out.println("The number was "+ number);
                 guesses++;
-                guessed = false;
+                guessing = false;
             }
         }
         return guesses;
