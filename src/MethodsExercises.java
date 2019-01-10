@@ -56,7 +56,12 @@ public class MethodsExercises {
             }
         }
         int guesses = HighLow();
-        System.out.println("It took you " + guesses + " guesses.");
+        if (guesses == 99){
+            System.out.println("You failed to guess the number.");
+        }
+        else{
+            System.out.println("It took you " + guesses + " guesses.");
+        }
 
 
     }
@@ -147,6 +152,11 @@ public class MethodsExercises {
         int guess = scanner.nextInt();
         int guesses = 0;
         while (guessing) {
+            if (guesses == 9){
+                System.out.println("Sorry but you have run out of guesses, the number was " +number);
+                guesses = 99;
+                break;
+            }
             if (guess < number) {
                 System.out.println("Too low, try again.");
                 guesses++;
