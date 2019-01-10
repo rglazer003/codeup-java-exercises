@@ -9,6 +9,7 @@ public class MethodsExercises {
         System.out.println(add(1,2));
         System.out.println(subtract(3,2));
         System.out.println(multiply(2,3));
+        System.out.println(multiplyLoop(3,7));
         System.out.println(divide(4,2));
         System.out.println(modulus(5,2));
         System.out.println("Enter a min number.");
@@ -20,8 +21,23 @@ public class MethodsExercises {
         System.out.println("You entered "+ num);
         System.out.println("Please enter a number between 1 and 10.");
         int fact = scanner.nextInt();
+        scanner.nextLine();
         long result = factorial(fact);
         System.out.println("Your factorial is "+result);
+        System.out.println("Run recursive factorial?");
+        String rfact = scanner.nextLine();
+        if (rfact.equalsIgnoreCase("yes")||rfact.equalsIgnoreCase("y")){
+            System.out.println("Please enter a number between 1 and 20.");
+            int bfactorial = scanner.nextInt();
+            while (bfactorial>20 || bfactorial<1){
+                System.out.println("Please enter a number between 1 and 20.");
+                bfactorial = scanner.nextInt();
+            }
+            int factCount = 1;
+            int factHold = 1;
+            long bfactResult = factorialBonus(bfactorial, factCount, factHold);
+            System.out.println("Your factorial is "+bfactResult);
+        }
         System.out.println("How many dice do you want to roll?");
         int diceCount = scanner.nextInt();
         System.out.println("How many sides does each dice have?");
@@ -54,6 +70,13 @@ public class MethodsExercises {
     public static long multiply (int first, int second){
         return (first*second);
     }
+    public static long multiplyLoop (int first, int second){
+        long hold = 0;
+        for (int count = 1; count <= first; count++){
+            hold += second;
+        }
+        return hold;
+    }
     public static long divide (int first, int second){
         return (first/second);
     }
@@ -82,6 +105,16 @@ public class MethodsExercises {
         for (int count = 1; count <= number; count++ ){
             System.out.println(hold + "*" + count + "=" + (hold * count));
             hold *= count;
+        }
+        return hold;
+    }
+    public static long factorialBonus (int number, int count, long hold){
+        if (count <= number){
+            int holdNumber = number;
+            hold *=count;
+            count++;
+            System.out.println(hold);
+            return factorialBonus(holdNumber,count,hold);
         }
         return hold;
     }
