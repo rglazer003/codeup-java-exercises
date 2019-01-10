@@ -20,7 +20,7 @@ public class Bob {
             }
             else if (conv.equalsIgnoreCase("end") || conv.equalsIgnoreCase("end.")){
                 System.out.println("Cya.");
-                break;
+                loop = false;
             }
             else {
                 System.out.println("Whatever.");
