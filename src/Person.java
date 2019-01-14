@@ -14,12 +14,21 @@ public class Person {
     }
 
     public static void main(String[] args) {
-        Person person1 = new Person("Greg");
+//        Person person1 = new Person("Greg");
+//        System.out.println(person1.getName());
+//        person1.setName("Dan");
+//        System.out.println(person1.getName());
+//        person1.sayHello();
+//        Person person1 = new Person("John");
+//        Person person2 = person1;
+//        System.out.println(person1 == person2);
+        Person person1 = new Person("John");
+        Person person2 = person1;
         System.out.println(person1.getName());
-        person1.setName("Dan");
+        System.out.println(person2.getName());
+        person2.setName("Jane");
         System.out.println(person1.getName());
-        person1.sayHello();
-
+        System.out.println(person2.getName());
     }
 }
 
