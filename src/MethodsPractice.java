@@ -1,3 +1,5 @@
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -104,7 +106,8 @@ public class MethodsPractice {
 //        //Modified longestRun to also work as secondLongestRun, thus they are called from the same method
 //        System.out.println("Second longest run is " + longestRun(sequence,2));
 //        System.out.println(magic8Ball("Test"));
-        dndDiceRoll();
+//        dndDiceRoll();
+        l5rDiceRoll();
     }
 
     public static void firstChar() {
@@ -468,5 +471,36 @@ public class MethodsPractice {
             count++;
         }
         System.out.println("Total of all rolls is "+ hold);
+    }
+
+    public static void l5rDiceRoll(){
+        Scanner scanner = new Scanner(System.in);
+        scanner.useDelimiter("\n");
+        Random rand = new Random();
+        System.out.println("Put the stuff in, XrY");
+        String dice = scanner.nextLine();
+        Scanner roll = new Scanner(dice);
+        roll.useDelimiter("r");
+        int diceNum = roll.nextInt();
+        int keep = roll.nextInt();
+        int count = 1;
+        int arrayCount = 0;
+        Integer intarray[];
+        intarray = new Integer[diceNum];
+        while (count<=diceNum){
+            int hold = rand.nextInt(10)+1;
+            System.out.println(hold);
+            intarray[arrayCount]=hold;
+            count++;
+            arrayCount++;
+        }
+        Arrays.sort(intarray, Collections.reverseOrder());
+        System.out.println("Here are your " + keep + " highest rolls:");
+        int step = 0;
+        while (step<=keep-1){
+            System.out.println(intarray[step]);
+            step++;
+        }
+
     }
 }
