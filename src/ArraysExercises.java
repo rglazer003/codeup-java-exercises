@@ -16,18 +16,18 @@ public class ArraysExercises {
         for (int i = 0; i <=2; i++) {
             System.out.println(people[i].getName());
         }
-        Person [] newPeople = addPerson(people);
+        String name = Input.getString("Enter a name");
+        Person [] newPeople = addPerson(people, name);
         int length = newPeople.length;
         for (int i = 0; i<=length-1;i++){
             System.out.println(newPeople[i].getName());
         }
     }
-    public static Person[] addPerson(Person people[]){
+    public static Person[] addPerson(Person people[], String name){
         Person [] newList = new Person[people.length+1];
         for (int i = 0; i<=people.length-1;i++){
             newList[i]=people[i];
         }
-        String name = Input.getString("Enter a name");
         newList[newList.length-1] = new Person(name);
         return newList;
     }
