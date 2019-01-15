@@ -33,7 +33,7 @@ public class Circle {
             System.out.println("Input radius");
             double rad = Input.getDouble();
             Circle circle = new Circle(rad);
-            Input.reset();
+            Input.waitForEnter();
             System.out.println("Area: " + circle.getArea());
             System.out.println("Circumference: " + circle.getCircumference());
             loopBoost();

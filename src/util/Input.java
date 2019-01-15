@@ -1,5 +1,8 @@
 package util;
 
+import movies.Movie;
+import movies.MoviesApplication;
+
 import java.util.Scanner;
 
 public class Input {
@@ -83,8 +86,18 @@ public class Input {
         return scanner.nextDouble();
     }
 
-    public static void reset(){
+    public static void waitForEnter(){
         scanner.nextLine();
+    }
+
+    public static int getIntMovie(int min, int max) {
+        int input = scanner.nextInt();
+        if (input > max || input < min) {
+            System.out.println("Invalid choice, please enter a valid option");
+            MoviesApplication.listOptions();
+            return getInt(min, max);
+        }
+        return input;
     }
 
     public static void main(String[] args) {

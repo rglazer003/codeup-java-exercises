@@ -1,3 +1,5 @@
+import util.Input;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
@@ -107,7 +109,10 @@ public class MethodsPractice {
 //        System.out.println("Second longest run is " + longestRun(sequence,2));
 //        System.out.println(magic8Ball("Test"));
 //        dndDiceRoll();
-        l5rDiceRoll();
+//        l5rDiceRoll();
+//        String question = Input.getString("Ask a question");
+//        magic8Ball(question);
+        switchTest();
     }
 
     public static void firstChar() {
@@ -502,5 +507,19 @@ public class MethodsPractice {
             step++;
         }
 
+    }
+    public static void switchTest(){
+        int test = Input.getInt("Enter a number, 1-3");
+        switch (test){
+            case 1:
+                System.out.println(test);
+            case 2:
+                System.out.println(test);
+            case 3:
+                System.out.println(test);
+                if (Input.yesNo()){
+                    switchTest();
+                }
+        }
     }
 }
