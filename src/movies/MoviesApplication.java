@@ -18,53 +18,40 @@ public class MoviesApplication {
             }
             if (choice == 2){
                 int count = getCount("animated", listAll);
-                Movie [] animatedList = new Movie[count];
-                animatedList = updateArray(listAll, animatedList, "animated");
+                Movie [] animatedList = createArray(listAll, count,"animated");
                 listMovies(animatedList);
             }
             if (choice == 3) {
                 int count = getCount("drama", listAll);
-                Movie [] dramaList = new Movie[count];
-                dramaList = updateArray(listAll, dramaList, "drama");
+                Movie [] dramaList = createArray(listAll, count, "drama");;
                 listMovies(dramaList);
             }
             if (choice == 4){
                 int count = getCount("horror", listAll);
-                Movie [] horrorList = new Movie[count];
-                horrorList = updateArray(listAll, horrorList, "horror");
+                Movie [] horrorList = createArray(listAll, count, "horror");;
                 listMovies(horrorList);
             }
             if (choice == 5){
                 int count = getCount("scifi", listAll);
-                Movie [] scifiList = new Movie[count];
-                scifiList = updateArray(listAll, scifiList, "scifi");
+                Movie [] scifiList = createArray(listAll, count, "scifi");;
                 listMovies(scifiList);
             }
             if (choice == 6){
                 int count = getCount("musical", listAll);
-                Movie [] musicalList = new Movie[count];
-                musicalList = updateArray(listAll, musicalList, "musical");
+                Movie [] musicalList = createArray(listAll, count, "musical");
                 listMovies(musicalList);
             }
             if (choice == 7){
                 System.out.println("Please enter category to search for");
                 String search = Input.getString();
                 int count = getCount(search, listAll);
-                Movie [] searchList = new Movie[count];
-                searchList = updateArray(listAll, searchList, search);
+                Movie [] searchList = createArray(listAll, count, search);
                 listMovies(searchList);
             }
             if (choice == 8){
                 System.out.println("Please enter name to search for");
                 String search = Input.getString();
-                int count = 0;
-                for (Movie movie: listAll){
-                    String check = movie.getName();
-                    if (check.equalsIgnoreCase(search)){
-                        count++;
-                    }
-                }
-                Movie [] searchList = new Movie[count];
+                Movie [] searchList = new Movie[1];
                 int step = 0;
                 for (Movie movie: listAll){
                     String check = movie.getName();
@@ -73,7 +60,13 @@ public class MoviesApplication {
                         step++;
                     }
                 }
-                listMovies(searchList);
+                if (step==0){
+                    System.out.println("Could not find movie with that name");
+                }
+                else {
+                    listMovies(searchList);
+
+                }
             }
             if (choice == 9){
                 int length = listAll.length;
@@ -109,7 +102,7 @@ public class MoviesApplication {
             }
             System.out.println("Press enter to continue");
             Input.waitForEnter();
-            loop = Input.yesNoSilent("Continue?");
+            loop = Input.yesNoSilent("Would you like to do another task?");
         }while (loop);
         System.out.println("Goodbye");
 
@@ -137,16 +130,17 @@ public class MoviesApplication {
         }
         return count;
     }
-    public static Movie[] updateArray (Movie[] listArray, Movie [] updateArray, String category){
+    public static Movie[] createArray(Movie[] listArray, int count, String category){
         int step = 0;
+        Movie [] tempArray = new Movie[count];
         for (Movie movie: listArray){
             String check = movie.getCategory();
             if (check.equalsIgnoreCase(category)){
-                updateArray[step]=movie;
+                tempArray[step]=movie;
                 step++;
             }
         }
-        return updateArray;
+        return tempArray;
     }
 
 }
