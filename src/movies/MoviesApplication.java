@@ -8,7 +8,7 @@ public class MoviesApplication {
         Movie [] listAll = MoviesArray.findAll();
         do {
             listOptions();
-            int choice = Input.getIntMovie(0,8);
+            int choice = Input.getIntMovie(0,10);
             Input.waitForEnter();
             if (choice == 0){
                 break;
@@ -17,101 +17,65 @@ public class MoviesApplication {
                 listMovies(listAll);
             }
             if (choice == 2){
-                int count = 0;
-                for (Movie movie: listAll){
-                    String check = movie.getCategory();
-                    if (check.equalsIgnoreCase("animated")){
-                        count++;
-                    }
-                }
+                int count = getCount("animated", listAll);
                 Movie [] animatedList = new Movie[count];
-                int step = 0;
-                for (Movie movie: listAll){
-                    String check = movie.getCategory();
-                    if (check.equalsIgnoreCase("animated")){
-                        animatedList[step]=movie;
-                        step++;
-                    }
-                }
+                animatedList = updateArray(listAll, animatedList, "animated");
                 listMovies(animatedList);
             }
             if (choice == 3) {
-                int count = 0;
-                for (Movie movie: listAll){
-                    String check = movie.getCategory();
-                    if (check.equalsIgnoreCase("drama")){
-                        count++;
-                    }
-                }
+                int count = getCount("drama", listAll);
                 Movie [] dramaList = new Movie[count];
-                int step = 0;
-                for (Movie movie: listAll){
-                    String check = movie.getCategory();
-                    if (check.equalsIgnoreCase("drama")){
-                        dramaList[step]=movie;
-                        step++;
-                    }
-                }
+                dramaList = updateArray(listAll, dramaList, "drama");
                 listMovies(dramaList);
             }
             if (choice == 4){
-                int count = 0;
-                for (Movie movie: listAll){
-                    String check = movie.getCategory();
-                    if (check.equalsIgnoreCase("horror")){
-                        count++;
-                    }
-                }
+                int count = getCount("horror", listAll);
                 Movie [] horrorList = new Movie[count];
-                int step = 0;
-                for (Movie movie: listAll){
-                    String check = movie.getCategory();
-                    if (check.equalsIgnoreCase("horror")){
-                        horrorList[step]=movie;
-                        step++;
-                    }
-                }
+                horrorList = updateArray(listAll, horrorList, "horror");
                 listMovies(horrorList);
             }
             if (choice == 5){
-                int count = 0;
-                for (Movie movie: listAll){
-                    String check = movie.getCategory();
-                    if (check.equalsIgnoreCase("scifi")){
-                        count++;
-                    }
-                }
+                int count = getCount("scifi", listAll);
                 Movie [] scifiList = new Movie[count];
-                int step = 0;
-                for (Movie movie: listAll){
-                    String check = movie.getCategory();
-                    if (check.equalsIgnoreCase("scifi")){
-                        scifiList[step]=movie;
-                        step++;
-                    }
-                }
+                scifiList = updateArray(listAll, scifiList, "scifi");
                 listMovies(scifiList);
             }
             if (choice == 6){
-                int count = 0;
-                for (Movie movie: listAll){
-                    String check = movie.getCategory();
-                    if (check.equalsIgnoreCase("musical")){
-                        count++;
-                    }
-                }
+                int count = getCount("musical", listAll);
                 Movie [] musicalList = new Movie[count];
-                int step = 0;
-                for (Movie movie: listAll){
-                    String check = movie.getCategory();
-                    if (check.equalsIgnoreCase("musical")){
-                        musicalList[step]=movie;
-                        step++;
-                    }
-                }
+                musicalList = updateArray(listAll, musicalList, "musical");
                 listMovies(musicalList);
             }
             if (choice == 7){
+                System.out.println("Please enter category to search for");
+                String search = Input.getString();
+                int count = getCount(search, listAll);
+                Movie [] searchList = new Movie[count];
+                searchList = updateArray(listAll, searchList, search);
+                listMovies(searchList);
+            }
+            if (choice == 8){
+                System.out.println("Please enter name to search for");
+                String search = Input.getString();
+                int count = 0;
+                for (Movie movie: listAll){
+                    String check = movie.getName();
+                    if (check.equalsIgnoreCase(search)){
+                        count++;
+                    }
+                }
+                Movie [] searchList = new Movie[count];
+                int step = 0;
+                for (Movie movie: listAll){
+                    String check = movie.getName();
+                    if (check.equalsIgnoreCase(search)){
+                        searchList[step]=movie;
+                        step++;
+                    }
+                }
+                listMovies(searchList);
+            }
+            if (choice == 9){
                 int length = listAll.length;
                 System.out.println("Enter name");
                 String name = Input.getString();
@@ -128,7 +92,7 @@ public class MoviesApplication {
                 listMovies(newList);
                 listAll=newList;
             }
-            if (choice == 8){
+            if (choice == 10){
                 listMovies(listAll);
                 System.out.println("Please enter number of movie to edit");
                 int editNum = Input.getInt();
@@ -152,7 +116,7 @@ public class MoviesApplication {
     }
     public static void listOptions(){
         System.out.println("What would you like to do?\n0. Exit\n1. View all movies\n2. View Animated movies\n" +
-                "3. View Drama movies\n4. View Horror movies\n5. View Scifi movies\n6. View Musicals\n7. Add a movie\n8. Edit a movie");
+                "3. View Drama movies\n4. View Horror movies\n5. View Scifi movies\n6. View Musicals\n7. Manual category search\n8. Manual name search\n9. Add a movie\n10. Edit a movie");
     }
     public static void listMovies(Movie movies[]){
         int list = 1;
@@ -163,6 +127,26 @@ public class MoviesApplication {
             list++;
         }
     }
-
+    public static int getCount(String category, Movie[] array){
+        int count = 0;
+        for (Movie movie: array){
+            String check = movie.getCategory();
+            if (check.equalsIgnoreCase(category)){
+                count++;
+            }
+        }
+        return count;
+    }
+    public static Movie[] updateArray (Movie[] listArray, Movie [] updateArray, String category){
+        int step = 0;
+        for (Movie movie: listArray){
+            String check = movie.getCategory();
+            if (check.equalsIgnoreCase(category)){
+                updateArray[step]=movie;
+                step++;
+            }
+        }
+        return updateArray;
+    }
 
 }
