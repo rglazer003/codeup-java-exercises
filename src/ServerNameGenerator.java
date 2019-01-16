@@ -16,8 +16,8 @@ public class ServerNameGenerator {
     public static void randomName(String array1[], String array2[]){
         Random random = new Random();
         int length = array1.length;
-        int rand1 = random.nextInt(length-1)+1;
-        int rand2 = random.nextInt(length-1)+1;
+        int rand1 = random.nextInt(length);
+        int rand2 = random.nextInt(length);
         System.out.println("Here is your server name:");
         System.out.println(array2[rand1]+"-"+array1[rand2]);
     }

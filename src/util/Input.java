@@ -86,7 +86,7 @@ public class Input {
         return scanner.nextDouble();
     }
 
-    public static void waitForEnter(){
+    public static void waitForEnter() {
         scanner.nextLine();
     }
 
@@ -95,9 +95,15 @@ public class Input {
         if (input > max || input < min) {
             System.out.println("Invalid choice, please enter a valid option");
             MoviesApplication.listOptions();
-            return getInt(min, max);
+            return getIntMovie(min, max);
         }
         return input;
+    }
+
+    public static boolean yesNoSilent(String prompt){
+        System.out.println(prompt);
+        String input =scanner.nextLine();
+        return (input.equalsIgnoreCase("yes")||input.equalsIgnoreCase("y"));
     }
 
     public static void main(String[] args) {

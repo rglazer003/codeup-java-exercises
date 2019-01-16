@@ -2,25 +2,21 @@ package movies;
 
 import util.Input;
 
-import java.util.Scanner;
-
 public class MoviesApplication {
     public static void main(String[] args) {
         boolean loop;
         Movie [] listAll = MoviesArray.findAll();
         do {
             listOptions();
-            int choice = Input.getIntMovie(0,6);
+            int choice = Input.getIntMovie(0,8);
             Input.waitForEnter();
             if (choice == 0){
                 break;
             }
             if (choice == 1){
-                int list = 1;
                 listMovies(listAll);
             }
             if (choice == 2){
-                int list = 1;
                 int count = 0;
                 for (Movie movie: listAll){
                     String check = movie.getCategory();
@@ -40,7 +36,6 @@ public class MoviesApplication {
                 listMovies(animatedList);
             }
             if (choice == 3) {
-                int list = 1;
                 int count = 0;
                 for (Movie movie: listAll){
                     String check = movie.getCategory();
@@ -60,7 +55,6 @@ public class MoviesApplication {
                 listMovies(dramaList);
             }
             if (choice == 4){
-                int list = 1;
                 int count = 0;
                 for (Movie movie: listAll){
                     String check = movie.getCategory();
@@ -80,7 +74,6 @@ public class MoviesApplication {
                 listMovies(horrorList);
             }
             if (choice == 5){
-                int list = 1;
                 int count = 0;
                 for (Movie movie: listAll){
                     String check = movie.getCategory();
@@ -100,6 +93,25 @@ public class MoviesApplication {
                 listMovies(scifiList);
             }
             if (choice == 6){
+                int count = 0;
+                for (Movie movie: listAll){
+                    String check = movie.getCategory();
+                    if (check.equalsIgnoreCase("musical")){
+                        count++;
+                    }
+                }
+                Movie [] musicalList = new Movie[count];
+                int step = 0;
+                for (Movie movie: listAll){
+                    String check = movie.getCategory();
+                    if (check.equalsIgnoreCase("musical")){
+                        musicalList[step]=movie;
+                        step++;
+                    }
+                }
+                listMovies(musicalList);
+            }
+            if (choice == 7){
                 int length = listAll.length;
                 System.out.println("Enter name");
                 String name = Input.getString();
@@ -116,16 +128,31 @@ public class MoviesApplication {
                 listMovies(newList);
                 listAll=newList;
             }
+            if (choice == 8){
+                listMovies(listAll);
+                System.out.println("Please enter number of movie to edit");
+                int editNum = Input.getInt();
+                Movie [] editArray = new Movie[1];
+                editArray[0]=listAll[editNum-1];
+                listMovies(editArray);
+                Input.waitForEnter();
+                String newName = Input.getString("Enter new name");
+                String newCategory = Input.getString("Enter new category");
+                listAll[editNum-1].setName(newName);
+                listAll[editNum-1].setCategory(newCategory);
+                editArray[0]=listAll[editNum-1];
+                listMovies(editArray);
+            }
             System.out.println("Press enter to continue");
             Input.waitForEnter();
-            loop = Input.yesNo("Continue?");
+            loop = Input.yesNoSilent("Continue?");
         }while (loop);
         System.out.println("Goodbye");
 
     }
     public static void listOptions(){
         System.out.println("What would you like to do?\n0. Exit\n1. View all movies\n2. View Animated movies\n" +
-                "3. View Drama movies\n4. View Horror movies\n5. View Scifi movies\n6. Add a movie");
+                "3. View Drama movies\n4. View Horror movies\n5. View Scifi movies\n6. View Musicals\n7. Add a movie\n8. Edit a movie");
     }
     public static void listMovies(Movie movies[]){
         int list = 1;
