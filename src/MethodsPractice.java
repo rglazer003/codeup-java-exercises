@@ -112,7 +112,7 @@ public class MethodsPractice {
 //        l5rDiceRoll();
 //        String question = Input.getString("Ask a question");
 //        magic8Ball(question);
-        switchTest();
+//        switchTest();
     }
 
     public static void firstChar() {
@@ -521,5 +521,18 @@ public class MethodsPractice {
                     switchTest();
                 }
         }
+    }
+    public static int [] shuffleTest(int[] array){
+        Random rand = new Random();
+        for (int i = 0; i<array.length;i++){
+            int random = rand.nextInt(array.length);
+            int temp = array[i];
+            array[i]=array[random];
+            array[random]=temp;
+        }
+        for (int num: array){
+            System.out.println(num);
+        }
+        return array;
     }
 }
