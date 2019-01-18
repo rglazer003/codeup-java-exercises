@@ -31,6 +31,9 @@ public class Student {
             System.out.println(this.grades.get(i));
         }
     }
+    public ArrayList<Integer> listGradesReturn(){
+        return this.grades;
+    }
     public static void main(String[] args) {
         Student student1 = new Student("Test");
         student1.addGrade(70);

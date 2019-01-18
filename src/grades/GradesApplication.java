@@ -2,6 +2,7 @@ package grades;
 
 import util.Input;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,7 +30,8 @@ public class GradesApplication {
             System.out.println(userName);
         }
         System.out.println("All");
-        boolean loop = true;
+        System.out.println("View class average (ca)");
+        boolean loop;
         do {
             System.out.println("Which user would you to see more information about?");
             String input = Input.getString();
@@ -43,6 +45,20 @@ public class GradesApplication {
                     students.get(key).listGrades();
 
                 }
+            }
+            else if (input.equalsIgnoreCase("ca")){
+                double hold = 0;
+                int track = 0;
+                for (Map.Entry<String, Student> entry: students.entrySet()){
+                    String key = entry.getKey();
+                    ArrayList<Integer> listHold = students.get(key).listGradesReturn();
+                    int length = listHold.size();
+                    for (int i = 0; i<length;i++){
+                        hold += listHold.get(i);
+                        track++;
+                    }
+                }
+                System.out.println("Average of all grades is "+(hold/track));
             }
             else if (!students.containsKey(input)){
                 System.out.println("Username not found, please enter a valid username");
