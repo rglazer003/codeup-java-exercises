@@ -530,9 +530,6 @@ public class MethodsPractice {
             array[i]=array[random];
             array[random]=temp;
         }
-        for (int num: array){
-            System.out.println(num);
-        }
         return array;
     }
 }
