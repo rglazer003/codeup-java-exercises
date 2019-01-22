@@ -28,7 +28,15 @@ public class Input {
     }
 
     public static int getInt() {
-        return scanner.nextInt();
+        String hold = scanner.nextLine();
+        int result;
+        try {
+            result = Integer.valueOf(hold);
+        }catch (NumberFormatException e){
+            System.out.println("Not a number, please try again");
+            return getInt();
+        }
+        return result;
     }
 
     public static double getDouble(double min, double max) {
@@ -41,7 +49,15 @@ public class Input {
     }
 
     public static double getDouble() {
-        return scanner.nextDouble();
+        String hold = scanner.nextLine();
+        double result;
+        try{
+            result = Double.valueOf(hold);
+        }catch (NumberFormatException e){
+            System.out.println("Not a valid number, please try again");
+            return getDouble();
+        }
+        return result;
     }
 
     public static String getString(String prompt) {
