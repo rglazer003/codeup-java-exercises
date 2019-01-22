@@ -122,6 +122,30 @@ public class Input {
         return (input.equalsIgnoreCase("yes")||input.equalsIgnoreCase("y"));
     }
 
+    public static int getIntBinary (){
+        String hold = scanner.nextLine();
+        int result;
+        try {
+            result = Integer.valueOf(hold,2);
+        } catch (NumberFormatException e){
+            System.out.println("Not a valid number, please try again");
+            return getIntBinary();
+        }
+        return result;
+    }
+
+    public static int getIntHex (){
+        String hold = scanner.nextLine();
+        int result;
+        try {
+            result = Integer.valueOf(hold,16);
+        } catch (NumberFormatException e){
+            System.out.println("Not a valid number, please try again");
+            return getIntHex();
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
     }
 }

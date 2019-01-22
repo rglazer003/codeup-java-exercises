@@ -9,6 +9,7 @@ public class InputTest {
 //        System.out.println(Input.getDouble(1.2,9.7));
 //        System.out.println(Input.getDouble());
 //        System.out.println(Input.getInt());
-        System.out.println(Input.getDouble());
+//        System.out.println(Input.getDouble());
+        System.out.println(Input.getIntHex());
     }
 }
